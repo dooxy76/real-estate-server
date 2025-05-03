@@ -18,7 +18,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 import cors from "cors";
-import cors from "cors";
 
 app.use(cors({
   origin: "https://real-estate-server-3ciu32dxs-fabios-projects-71b0107c.vercel.app",
