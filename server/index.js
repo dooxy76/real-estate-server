@@ -18,14 +18,22 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 import cors from "cors";
+const allowedOrigins = [
+  "http://localhost:5173", // dev
+  "https://real-estate-server-3ciu32dxs-fabios-projects-71b0107c.vercel.app" // prod
+];
 
 app.use(cors({
-  origin: ["https://real-estate-client-dusky.vercel.app"], // ✅ solo il tuo dominio
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   credentials: true
 }));
 
-
-const expressServer = http.createServer(app);
 // Connect to the database
 main().catch((err) => console.log(err));
 async function main() {
