@@ -31,7 +31,8 @@ async function main() {
   await mongoose.connect(process.env.MONGO);
   console.log("Database connected");
 }
-expressServer.listen(PORT, () => {
+app.listen(PORT, () => {
+
   console.log(`Server listening on port ${PORT}`);
 });
 // Starting the server
