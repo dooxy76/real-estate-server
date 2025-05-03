@@ -16,8 +16,16 @@ import { Server } from "socket.io";
 const PORT = process.env.PORT || 3000;
 const app = express();
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(cors("*"));
+import cors from "cors";
+
+app.use(cors({
+  origin: ["https://real-estate-client-dusky.vercel.app"], // ✅ solo il tuo dominio
+  credentials: true
+}));
+
+
 const expressServer = http.createServer(app);
 // Connect to the database
 main().catch((err) => console.log(err));
@@ -25,10 +33,11 @@ async function main() {
   await mongoose.connect(process.env.MONGO);
   console.log("Database connected");
 }
-// Starting the server
 expressServer.listen(PORT, () => {
-  console.log(`Server running at port ${PORT}`);
+  console.log(`Server listening on port ${PORT}`);
 });
+// Starting the server
+
 // Routes
 app.use("/api/users", userRouter);
 app.use("/api/auth", auth);
