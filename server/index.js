@@ -6,7 +6,6 @@ import userRouter from "./api/routes/user.route.js";
 import auth from "./api/routes/auth.route.js";
 import cookieParser from "cookie-parser";
 import postRouter from "./api/routes/post.route.js";
-import { cors } from "./api/utils/requestCors.js";
 import messageRouter from "./api/routes/message.route.js";
 import conversationRoute from "./api/routes/conversation.route.js";
 import notificatonRoute from "./api/routes/notification.route.js";
